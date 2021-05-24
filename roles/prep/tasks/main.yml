@@ -1,0 +1,76 @@
+---
+- name: Ensure that required packages are installed
+  yum:
+    name: "{{ packages }}"
+    state: present
+
+- name: Enable firewalld
+  systemd:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: Enable firewalld for kibana
+  firewalld:
+    port: 5601/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+
+- name: Enable firewalld for logstash
+  firewalld:
+    port: 9200/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+
+- name: Enable firewalld for https
+  firewalld:
+    service: https
+    permanent: true
+    state: enabled
+    immediate: true
+
+- name: Create the elk user
+  user:
+    name: elk
+    create_home: false
+    shell: /sbin/nologin
+    state: present
+    uid: 1000
+
+- name: Create elasticsearch config dir
+  file:
+    path: /etc/elasticsearch
+    state: directory
+    mode: '0755'
+    owner: root
+    group: elk
+    setype: container_file_t
+
+- name: Create logstash config dir
+  file:
+    path: /etc/logstash/pipeline
+    state: directory
+    mode: '0755'
+    owner: root
+    group: elk
+    setype: container_file_t
+
+- name: Copy elasticsearch config file
+  template:
+    dest: /etc/elasticsearch/elasticsearch.yml
+    src: elasticsearch.yml.j2
+    mode: '0644'
+    owner: root
+    group: elk
+    setype: container_file_t
+
+- name: Copy logstash pipeline config
+  copy:
+    dest: /etc/logstash/pipeline/tower.conf
+    src: tower.conf
+    mode: '0644'
+    owner: root
+    group: elk
+    setype: container_file_t

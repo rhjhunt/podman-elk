@@ -1,0 +1,14 @@
+---
+- name: Setup up an Elk Stack for Ansible Tower
+  hosts: all
+  become: true
+  collections:
+    - containers.podman
+  vars:
+    pod: elk
+    hostname: elk
+    version: 7.12.1
+    elk_cluster_name: elk-tower
+  roles:
+    - prep
+    - install
