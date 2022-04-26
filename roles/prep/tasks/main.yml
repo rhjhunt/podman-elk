@@ -17,6 +17,13 @@
     state: enabled
     immediate: true
 
+- name: Enable firewalld for remote logging
+  firewalld:
+    port: 8085/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+
 - name: Enable firewalld for logstash
   firewalld:
     port: 9200/tcp

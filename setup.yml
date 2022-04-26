@@ -7,7 +7,7 @@
   vars:
     pod: elk
     hostname: elk
-    version: 7.12.1
+    version: 8.1.2
     elk_cluster_name: elk-tower
   roles:
     - prep
