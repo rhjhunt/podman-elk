@@ -1,9 +1,9 @@
 ---
 # Name of podman Pod to be created
-pod: elk
+install_pod: elk
 
 # Hostname to associate with the Pod
-hostname: elk
+install_hostname: elk.example.com
 
 # Version of elasticsearch, logstash, and kibiana
-version: "7.12.1"
+install_version: "8.8.0"

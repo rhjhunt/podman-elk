@@ -1,2 +1,17 @@
 cluster.name: "{{ elk_cluster_name }}"
 network.host: 0.0.0.0
+network.host: 10.14.91.244
+http.port: 9200
+xpack.security.enabled: true
+xpack.security.enrollment.enabled: true
+xpack.security.http.ssl:
+  enabled: true
+  keystore.path: certs/http.p12
+xpack.security.transport.ssl:
+  enabled: true
+  verification_mode: certificate
+  keystore.path: certs/transport.p12
+  truststore.path: certs/transport.p12
+cluster.initial_master_nodes: ["pitchfork.usersys.redhat.com"]
+http.host: 0.0.0.0
+

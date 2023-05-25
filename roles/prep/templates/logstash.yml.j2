@@ -1,0 +1,7 @@
+path.data: /var/lib/logstash
+path.logs: /var/log/logstash
+xpack.management.enabled: false
+xpack.management.pipeline.id: ["main"]
+xpack.management.elasticsearch.username: "{{ prep_username }}"
+xpack.management.elasticsearch.password: "{{ prep_password }}"
+xpack.management.elasticsearch.hosts: ["https://10.14.91.244:9200"]

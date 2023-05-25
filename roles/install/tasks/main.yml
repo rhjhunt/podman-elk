@@ -1,8 +1,8 @@
 ---
 - name: Create ELK pod
   containers.podman.podman_pod:
-    name: "{{ pod }}"
-    hostname: "{{ hostname }}"
+    name: "{{ install_pod }}"
+    hostname: "{{ install_hostname }}"
     state: started
     ports:
       - 5601:5601
@@ -14,15 +14,15 @@
   containers.podman.podman_container:
     name: kibana
     state: started
-    pod: "{{ pod }}"
-    image: "docker.elastic.co/kibana/kibana:{{ version }}"
+    pod: "{{ install_pod }}"
+    image: "docker.elastic.co/kibana/kibana:{{ install_version }}"
 
 - name: Create logstash container
   containers.podman.podman_container:
     name: logstash
     state: started
-    pod: "{{ pod }}"
-    image: "docker.elastic.co/logstash/logstash:{{ version }}"
+    pod: "{{ install_pod }}"
+    image: "docker.elastic.co/logstash/logstash:{{ install_version }}"
     volume:
       - /etc/logstash/pipeline:/usr/share/logstash/pipeline
 
@@ -30,8 +30,8 @@
   containers.podman.podman_container:
     name: elasticsearch
     state: started
-    pod: "{{ pod }}"
-    image: "docker.elastic.co/elasticsearch/elasticsearch:{{ version }}"
+    pod: "{{ install_pod }}"
+    image: "docker.elastic.co/elasticsearch/elasticsearch:{{ install_version }}"
     env:
       discovery.type: single-node
     volume:

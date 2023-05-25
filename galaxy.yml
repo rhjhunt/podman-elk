@@ -1,0 +1,50 @@
+namespace: rhjhunt
+
+name: podman_elk
+
+version: 1.0.0
+
+readme: README.md
+
+authors:
+  - Jacob Hunt (https://github.com/rhjhunt)
+
+description: Install and configure and ELK stack with podman
+
+license:
+  - GPL-3.0-or-later
+
+# A list of tags you want to associate with the collection for indexing/searching. A tag name has the same character
+# requirements as 'namespace' and 'name'
+tags:
+  - podman
+  - ELK
+  - kibana
+  - logstash
+  - elascticsearch
+  - monitoring
+
+dependencies: {}
+
+# The URL of the originating SCM repository
+repository: https://github.com/rhjhunt/podman-elk
+
+# The URL to any online docs
+documentation: https://github.com/rhjhunt/podman-elk
+
+# The URL to the homepage of the collection/project
+homepage: https://github.com/rhjhunt/podman-elk
+
+# The URL to the collection issue tracker
+issues: https://github.com/rhjhunt/podman-elk/issues
+
+build_ignore:
+  - .vale.ini
+  - .yamllint
+  - .markdownlint.json
+  - .github
+  - .gitignore
+  - '*.tar.gz'
+  - venv/
+  - molecule/
+  - requirements.txt

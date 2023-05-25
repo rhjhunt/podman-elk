@@ -1,45 +1,45 @@
 ---
 - name: Ensure that required packages are installed
-  yum:
+  ansible.builtin.dnf:
     name: "{{ packages }}"
     state: present
 
 - name: Enable firewalld
-  systemd:
+  ansible.builtin.systemd:
     name: firewalld
     state: started
     enabled: true
 
 - name: Enable firewalld for kibana
-  firewalld:
+  ansible.posix.firewalld:
     port: 5601/tcp
     permanent: true
     state: enabled
     immediate: true
 
 - name: Enable firewalld for remote logging
-  firewalld:
+  ansible.posix.firewalld:
     port: 8085/tcp
     permanent: true
     state: enabled
     immediate: true
 
 - name: Enable firewalld for logstash
-  firewalld:
+  ansible.posix.firewalld:
     port: 9200/tcp
     permanent: true
     state: enabled
     immediate: true
 
 - name: Enable firewalld for https
-  firewalld:
+  ansible.posix.firewalld:
     service: https
     permanent: true
     state: enabled
     immediate: true
 
 - name: Create the elk user
-  user:
+  ansible.builtin.user:
     name: elk
     create_home: false
     shell: /sbin/nologin
@@ -47,7 +47,7 @@
     uid: 1000
 
 - name: Create elasticsearch config dir
-  file:
+  ansible.builtin.file:
     path: /etc/elasticsearch
     state: directory
     mode: '0755'
@@ -56,7 +56,7 @@
     setype: container_file_t
 
 - name: Create logstash config dir
-  file:
+  ansible.builtin.file:
     path: /etc/logstash/pipeline
     state: directory
     mode: '0755'
@@ -65,7 +65,7 @@
     setype: container_file_t
 
 - name: Copy elasticsearch config file
-  template:
+  ansible.builtin.template:
     dest: /etc/elasticsearch/elasticsearch.yml
     src: elasticsearch.yml.j2
     mode: '0644'
@@ -74,7 +74,7 @@
     setype: container_file_t
 
 - name: Copy logstash pipeline config
-  copy:
+  ansible.builtin.copy:
     dest: /etc/logstash/pipeline/tower.conf
     src: tower.conf
     mode: '0644'
