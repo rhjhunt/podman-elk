@@ -1,6 +1,6 @@
 server.port: 5601
-server.host: "10.14.91.244"
-server.name: "pitchfork.usersys.redhat.com"
+server.host: ""
+server.name: ""
 elasticsearch.ssl.certificate: /etc/kibana/certs/http_ca.crt
 logging:
   appenders:
@@ -14,7 +14,7 @@ logging:
       - default
       - file
 pid.file: /run/kibana/kibana.pid
-elasticsearch.hosts: ['https://10.14.91.244:9200']
+elasticsearch.hosts: ['https://192.168.122.1:9200']
 elasticsearch.serviceAccountToken: AAEAAWVsYXN0aWMva2liYW5hL2Vucm9sbC1wcm9jZXNzLXRva2VuLTE2NTU4NzAzODUzODg6T1VUVGFCdXhUdENhMnl4MTFVWmswdw
 elasticsearch.ssl.certificateAuthorities: [/var/lib/kibana/ca_1655870386420.crt]
-xpack.fleet.outputs: [{id: fleet-default-output, name: default, is_default: true, is_default_monitoring: true, type: elasticsearch, hosts: ['https://10.14.91.244:9200'], ca_trusted_fingerprint: 8f0ff1bc4b53834a3a2697182f7e95a9f52dd46bacf06af6fd395388fad3ece6}]
+xpack.fleet.outputs: [{id: fleet-default-output, name: default, is_default: true, is_default_monitoring: true, type: elasticsearch, hosts: ['https://192.168.122.1:9200'], ca_trusted_fingerprint: 8f0ff1bc4b53834a3a2697182f7e95a9f52dd46bacf06af6fd395388fad3ece6}]
